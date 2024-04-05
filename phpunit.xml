@@ -4,4 +4,7 @@
             <directory>test</directory>
         </testsuite>
     </testsuites>
+    <logging>
+        <testdoxHtml outputFile="testdox.html"/>
+    </logging>
 </phpunit>

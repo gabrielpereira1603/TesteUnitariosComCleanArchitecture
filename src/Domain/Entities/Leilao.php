@@ -18,9 +18,15 @@ class Leilao
         if (!empty($this->lances) && $this->LancePertenceAoUltimoUsuario($lance)) {
             return;
         }
+
+        $totalLancesUsuario = $this->quantidadeLancesPorUsuario($lance->getUsuario());
+
+        if ($totalLancesUsuario >= 5){
+            return;
+        }
         $this->lances[] = $lance;
     }
-    
+
     public function getLances(): array
     {
         return $this->lances;
@@ -28,7 +34,22 @@ class Leilao
 
     private function LancePertenceAoUltimoUsuario(Lance $lance): bool
     {
-        $ultimoLance = $this->lances[count($this->lances) - 1];
+        $ultimoLance = $this->lances[array_key_last($this->lances)];
         return $lance->getUsuario() === $ultimoLance->getUsuario();
+    }
+
+    private function quantidadeLancesPorUsuario(Usuario $usuario): int
+    {
+        $totalLancesUsuario = array_reduce($this->lances,
+            function (int $totalLancesAcumaldos, Lance $lanceAtual) use ($usuario) {
+                if($lanceAtual->getUsuario() == $usuario) {
+                    return $totalLancesAcumaldos + 1;
+                }
+
+                return $totalLancesAcumaldos;
+            },
+            0
+        );
+        return $totalLancesUsuario;
     }
 }

@@ -51,17 +51,24 @@
         </style>
     </head>
     <body>
-        <h2>Avaliador (Alura\Leilao\Tests\Infra\Service\Avaliador)</h2>
+        <h2>Leilao (Domain\Entities\Leilao)</h2>
         <ul>
-            <li class="success">Deve trazer maior lance with data set #0</li>
-            <li class="success">Deve trazer maior lance with data set #1</li>
-            <li class="success">Deve trazer maior lance with data set #2</li>
-            <li class="success">Deve trazer menor lance with data set #0</li>
-            <li class="success">Deve trazer menor lance with data set #1</li>
-            <li class="success">Deve trazer menor lance with data set #2</li>
-            <li class="success">Avaliador deve buscar os 3 maiores valores with data set #0</li>
-            <li class="success">Avaliador deve buscar os 3 maiores valores with data set #1</li>
-            <li class="success">Avaliador deve buscar os 3 maiores valores with data set #2</li>
+            <li class="success">Leilao nao deve receber lances repetidos</li>
+            <li class="success">Leilao nao deve aceitar mais de 5 lance por usuario</li>
+            <li class="success">Leilao deve receber lances with data set "Teste-Com-2-Lances"</li>
+            <li class="success">Leilao deve receber lances with data set "Teste-Com-1-Lances"</li>
+        </ul>
+        <h2>Avaliador (Infra\Service\Avaliador)</h2>
+        <ul>
+            <li class="success">Deve trazer maior lance with data set "Teste-Em-Ordem-Crescente"</li>
+            <li class="success">Deve trazer maior lance with data set "Teste-Em-Ordem-Decrescente"</li>
+            <li class="success">Deve trazer maior lance with data set "Teste-Em-Ordem-Aleatória"</li>
+            <li class="success">Deve trazer menor lance with data set "Teste-Em-Ordem-Crescente"</li>
+            <li class="success">Deve trazer menor lance with data set "Teste-Em-Ordem-Decrescente"</li>
+            <li class="success">Deve trazer menor lance with data set "Teste-Em-Ordem-Aleatória"</li>
+            <li class="success">Avaliador deve buscar os 3 maiores valores with data set "Teste-Em-Ordem-Crescente"</li>
+            <li class="success">Avaliador deve buscar os 3 maiores valores with data set "Teste-Em-Ordem-Decrescente"</li>
+            <li class="success">Avaliador deve buscar os 3 maiores valores with data set "Teste-Em-Ordem-Aleatória"</li>
         </ul>
     </body>
 </html>

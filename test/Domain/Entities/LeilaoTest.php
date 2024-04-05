@@ -21,6 +21,29 @@ class LeilaoTest extends TestCase
         static::assertEquals(1000, $leilao->getLances() [0]->getValor());
     }
 
+    public function testLeilaoNaoDeveAceitarMaisDe5LancePorUsuario()
+    {
+        $leilao = new Leilao('Masserati');
+        $joao = new Usuario('Joao Caetano');
+        $maria = new Usuario('Maria Silva');
+
+        $leilao->recebeLance(new Lance($joao, 1000));
+        $leilao->recebeLance(new Lance($maria, 1500));
+        $leilao->recebeLance(new Lance($joao, 2000));
+        $leilao->recebeLance(new Lance($maria, 2500));
+        $leilao->recebeLance(new Lance($joao, 3000));
+        $leilao->recebeLance(new Lance($maria, 3500));
+        $leilao->recebeLance(new Lance($joao, 4000));
+        $leilao->recebeLance(new Lance($maria, 4500));
+        $leilao->recebeLance(new Lance($joao, 5000));
+        $leilao->recebeLance(new Lance($maria, 5500));
+
+        $leilao->recebeLance(new Lance($joao, 6000));
+
+        static::assertCount(10, $leilao->getLances());
+        static::assertEquals(5500, $leilao->getLances() [array_key_last($leilao->getLances())]->getValor());
+    }
+
     /**
      * @dataProvider geraLances
      */
@@ -46,8 +69,8 @@ class LeilaoTest extends TestCase
         $leilaoCom1Lances->recebeLance(new Lance($maria, 5000));
 
         return [
-            [2, $leilaoCom2Lances, [1000, 2000]],
-            [1, $leilaoCom1Lances, [5000]]
+            'Teste-Com-2-Lances' => [2, $leilaoCom2Lances, [1000, 2000]],
+            'Teste-Com-1-Lances' => [1, $leilaoCom1Lances, [5000]]
         ];
     }
 }
